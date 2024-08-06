@@ -38,48 +38,53 @@ def menuPrincipal():
       \n''')
 
     while True:
-        if not usuario_cadastrado:
-            cadastro_sim_nao = Escolha(opcao_sim_nao, 'Deseja cadastrar-se?:\nSIM(S) ou NAO(N)\n-> ')
+        
 
-            if cadastro_sim_nao == 'NAO' or cadastro_sim_nao == 'N':
-                print('''
-        ▒█▀▄▀█ ▒█▀▀▀ ▒█▄░▒█ ▒█░▒█ 
-        ▒█▒█▒█ ▒█▀▀▀ ▒█▒█▒█ ▒█░▒█ 
-        ▒█░░▒█ ▒█▄▄▄ ▒█░░▀█ ░▀▄▄▀
-                \n\n''')
-
-                print('1. Sua Conta\n2. Listar Restaurantes\n3. Ativar Restaurante\n4. Sair do Aplicativo\n\n')
-
-                escolher_menu = Escolha(opcao_menu, 'Qual opção deseja escolher? (1, 2, 3 ou 4)\n-> ')
-                if escolher_menu == '1':
-                    continue
-                elif escolher_menu == '2':
-                    print('não cheguei nessa parte do curso ainda irmão')
-                elif escolher_menu == '3':
-                    print('não cheguei nessa parte do curso ainda irmão')
-                else:
-                    finalizar_app()
-            else:
-                break
-        else:
+        if cadastro_sim_nao == 'NAO' or cadastro_sim_nao == 'N':
             print('''
-        ▒█▀▄▀█ ▒█▀▀▀ ▒█▄░▒█ ▒█░▒█ 
-        ▒█▒█▒█ ▒█▀▀▀ ▒█▒█▒█ ▒█░▒█ 
-        ▒█░░▒█ ▒█▄▄▄ ▒█░░▀█ ░▀▄▄▀
-                \n\n''')
+    ▒█▀▄▀█ ▒█▀▀▀ ▒█▄░▒█ ▒█░▒█ 
+    ▒█▒█▒█ ▒█▀▀▀ ▒█▒█▒█ ▒█░▒█ 
+    ▒█░░▒█ ▒█▄▄▄ ▒█░░▀█ ░▀▄▄▀
+            \n\n''')
 
             print('1. Sua Conta\n2. Listar Restaurantes\n3. Ativar Restaurante\n4. Sair do Aplicativo\n\n')
 
             escolher_menu = Escolha(opcao_menu, 'Qual opção deseja escolher? (1, 2, 3 ou 4)\n-> ')
             if escolher_menu == '1':
-                continue
+                suaConta()
             elif escolher_menu == '2':
                 print('não cheguei nessa parte do curso ainda irmão')
             elif escolher_menu == '3':
                 print('não cheguei nessa parte do curso ainda irmão')
             else:
                 finalizar_app()
+        else:
+            break
+   
 
+def suaConta():
+    nome = lista_nomes_pessoas[0]
+    idade = lista_idade_pessoas[0]
+    telefone = lista_telefone_pessoas[0]
+    email = lista_email_pessoas[0]
+    cpf = lista_cpf_pessoas[0]
+
+    print(f"Nome: {nome}")
+    print(f"Idade: {idade}")
+    print(f"Telefone: {telefone}")
+    print(f"Email: {email}")
+    print(f"CPF: {cpf}")
+
+
+    dados_pessoa_0 = [
+        nome,
+        idade,
+        telefone,
+        email,
+        cpf
+    ]
+
+    print(dados_pessoa_0)
 
 
 

@@ -4,8 +4,20 @@ from list import *
 
 usuario_cadastrado = False
 
+def inserirListasPessoa():
+    usuario_cadastrado = True
+    lista_nomes_pessoas.append(nome_pessoa)
+    lista_idade_pessoas.append(idade_pessoa)
+    lista_telefone_pessoas.append(telefone_pessoa)
+    lista_email_pessoas.append(email_pessoa)
+    lista_cpf_pessoas.append(cpf_pessoa)
 
-def inserirListas():
+    print(f'Seja muito Bem-Vindo(a), {nome_pessoa}! A Sabor Express fica feliz em te receber!')
+    input('Digite uma tecla para voltar ao menu')
+    main()
+
+
+def inserirListasRestaurante():
 
     usuario_cadastrado = True
     lista_nomes_restaurantes.append(nome_restaurante)
@@ -38,15 +50,16 @@ if __name__ == '__main__':
                 if tipo_cadastro == 'PESSOA' or tipo_cadastro == 'P':
                     nome_pessoa = input('Insira seu nome completo:\n-> ')
                     idade_pessoa = input('Insira sua idade:\n-> ')
+                    telefone_pessoa = input('Insira seu Telefone:\n-> ')
                     email_pessoa = input('Insira seu email:\n-> ')
                     cpf_pessoa = input('Insira seu CPF:\n-> ')
 
-                    print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nNome: {nome_pessoa}\nIdade: {idade_pessoa}\nEmail: {email_pessoa}\nCPF: {cpf_pessoa}\n-------------------------------\n')
+                    print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nNome: {nome_pessoa}\nIdade: {idade_pessoa}\nTelefone: {telefone_pessoa}\nEmail: {email_pessoa}\nCPF: {cpf_pessoa}\n-------------------------------\n')
                     dados_corretos_pessoa = Escolha(opcao_sim_nao, 'O seus dados estão corretos?\nSIM(S) ou NAO(N)\n-> ')
 
                     if dados_corretos_pessoa == 'SIM' or dados_corretos_pessoa == 'S':
-                        print(f'Seja muito Bem-Vindo(a), {nome_pessoa}! A Sabor Express fica feliz em te receber!')
-
+                        inserirListasPessoa()
+                        os.system('cls')
 
                 else:
                     while True:
@@ -79,5 +92,5 @@ if __name__ == '__main__':
 
                                     print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nRazão Social: {nome_restaurante}\nCozinha: {tipo_restaurante}\nCNPJ: {cnpj_restaurante}\nTelefone: {telefone_restaurante}\nEmail: {email_restaurante}\nEndereço Completo: {endereco_restaurante}\n-------------------------------\n')
 
-                                    inserirListas()
+                                    inserirListasRestaurante()
                                     os.system('cls')
