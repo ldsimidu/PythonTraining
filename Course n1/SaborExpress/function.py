@@ -1,16 +1,11 @@
 import os
 from list import *
-from app import usuario_cadastrado
+from app import usuario_cadastrado, Escolha
 
 def main():
     menuPrincipal()   
 
-def Escolha(lista_opcoes, msg):
-    escolha = input(msg).upper()
-    while escolha not in lista_opcoes:
-        print('\nEscolha uma opção válida\n')
-        escolha = input(msg).upper()
-    return escolha
+
 
 '''def Finalizar_app():
     os.system('cls')
@@ -40,7 +35,7 @@ def menuPrincipal():
     while True:
         
 
-        if cadastro_sim_nao == 'NAO' or cadastro_sim_nao == 'N':
+        
             print('''
     ▒█▀▄▀█ ▒█▀▀▀ ▒█▄░▒█ ▒█░▒█ 
     ▒█▒█▒█ ▒█▀▀▀ ▒█▒█▒█ ▒█░▒█ 
@@ -58,33 +53,26 @@ def menuPrincipal():
                 print('não cheguei nessa parte do curso ainda irmão')
             else:
                 finalizar_app()
-        else:
-            break
    
 
 def suaConta():
-    nome = lista_nomes_pessoas[0]
-    idade = lista_idade_pessoas[0]
-    telefone = lista_telefone_pessoas[0]
-    email = lista_email_pessoas[0]
-    cpf = lista_cpf_pessoas[0]
 
-    print(f"Nome: {nome}")
-    print(f"Idade: {idade}")
-    print(f"Telefone: {telefone}")
-    print(f"Email: {email}")
-    print(f"CPF: {cpf}")
+    while not lista_nomes_pessoas:
+        print("Você não possui uma conta")
+        break
+    else:
+        nome = lista_nomes_pessoas[0]
+        idade = lista_idade_pessoas[0]
+        telefone = lista_telefone_pessoas[0]
+        email = lista_email_pessoas[0]
+        cpf = lista_cpf_pessoas[0]
 
+        print(f"Nome: {nome}")
+        print(f"Idade: {idade}")
+        print(f"Telefone: {telefone}")
+        print(f"Email: {email}")
+        print(f"CPF: {cpf}")
 
-    dados_pessoa_0 = [
-        nome,
-        idade,
-        telefone,
-        email,
-        cpf
-    ]
-
-    print(dados_pessoa_0)
 
 
 
