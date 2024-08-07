@@ -5,8 +5,6 @@ from app import usuario_cadastrado, Escolha
 def main():
     menuPrincipal()   
 
-
-
 '''def Finalizar_app():
     os.system('cls')
     print('Finalizando o app')'''
@@ -15,7 +13,6 @@ def finalizar_app():
     os.system('cls')
     # os.system('clear') 
     print('Finalizando o app')
-
 
 def menuPrincipal():
     print("""
@@ -54,7 +51,6 @@ def menuPrincipal():
             else:
                 finalizar_app()
    
-
 def suaConta():
 
     while not lista_nomes_pessoas:
