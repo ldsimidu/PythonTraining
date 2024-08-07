@@ -3,7 +3,6 @@ import os
 from list import *
 
 def main():
-    limpar_tela()
     menuPrincipal()   
 
 def menuPrincipal():
@@ -65,13 +64,26 @@ def desejaCadastrar():
     #while True:
     deseja_cadastro = Escolha(opcao_sim_nao, 'Deseja cadastrar-se?:\nSIM(S) ou NAO(N)\n-> ')
     if deseja_cadastro == 'SIM' or deseja_cadastro == 'S':
-        while True:
-            break
+        tipo_cadastro = Escolha(opcao_tipo_cadastro, '\nVocê deseja se cadastrar uma:\nCONTA(P) ou RESTAURANTE(R)?\n-> ')
+
+        if tipo_cadastro == 'PESSOA' or tipo_cadastro == 'P':
+            print('\nVocê escolheu se cadastrar uma:\nCONTA\n')
+        else:
+            print('\nVocê escolheu se cadastrar um :\nRESTAURANTE\n')
+
+        continuar_cadastro = Escolha(opcao_sim_nao, 'Deseja continuar com o perfil desejado para cadastro?\nSIM(S) ou NAO(N)\n-> ')
+        if continuar_cadastro == 'SIM' or continuar_cadastro == 'S':
+            limpar_tela()    
+            while True:
+                if tipo_cadastro == 'PESSOA' or tipo_cadastro == 'P':
+                    cadastrarPessoa()
+                else:
+                    cadastrarRestaurante()
     else:
         limpar_tela()
         menuPrincipal()
 
-def inserirListasPessoa():
+def inserirListasPessoa(nome_pessoa, idade_pessoa, telefone_pessoa, email_pessoa, cpf_pessoa):
     usuario_cadastrado = True
     lista_nomes_pessoas.append(nome_pessoa)
     lista_idade_pessoas.append(idade_pessoa)
@@ -82,7 +94,7 @@ def inserirListasPessoa():
     print(f'Seja muito Bem-Vindo(a), {nome_pessoa}! A Sabor Express fica feliz em te receber!')
     voltar_menu()
 
-def inserirListasRestaurante():
+def inserirListasRestaurante(nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante):
 
     usuario_cadastrado = True
     lista_nomes_restaurantes.append(nome_restaurante)
@@ -117,66 +129,49 @@ def voltar_menu():
         limpar_tela()
         menuPrincipal()
 
-#FIM DAS FUNÇÕES
+def cadastrarPessoa():
+    nome_pessoa = input('Insira seu nome completo:\n-> ')
+    idade_pessoa = input('Insira sua idade:\n-> ')
+    telefone_pessoa = input('Insira seu Telefone:\n-> ')
+    email_pessoa = input('Insira seu email:\n-> ')
+    cpf_pessoa = input('Insira seu CPF:\n-> ')
 
-menuPrincipal()
+    print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nNome: {nome_pessoa}\nIdade: {idade_pessoa}\nTelefone: {telefone_pessoa}\nEmail: {email_pessoa}\nCPF: {cpf_pessoa}\n-------------------------------\n')
+    dados_corretos_pessoa = Escolha(opcao_sim_nao, 'O seus dados estão corretos?\nSIM(S) ou NAO(N)\n-> ')
 
-tipo_cadastro = Escolha(opcao_tipo_cadastro, '\nVocê deseja se cadastrar uma:\nCONTA(P) ou RESTAURANTE(R)?\n-> ')
+    if dados_corretos_pessoa == 'SIM' or dados_corretos_pessoa == 'S':
+        inserirListasPessoa(nome_pessoa, idade_pessoa, telefone_pessoa, email_pessoa, cpf_pessoa)
+        limpar_tela()
 
-if tipo_cadastro == 'PESSOA' or tipo_cadastro == 'P':
-    print('\nVocê escolheu se cadastrar uma:\nCONTA\n')
-else:
-    print('\nVocê escolheu se cadastrar um :\nRESTAURANTE\n')
 
-continuar_cadastro = Escolha(opcao_sim_nao, 'Deseja continuar com o perfil desejado para cadastro?\nSIM(S) ou NAO(N)\n-> ')
-if continuar_cadastro == 'SIM' or continuar_cadastro == 'S':
-    limpar_tela()    
+def cadastrarRestaurante():
     while True:
-        if tipo_cadastro == 'PESSOA' or tipo_cadastro == 'P':
-            nome_pessoa = input('Insira seu nome completo:\n-> ')
-            idade_pessoa = input('Insira sua idade:\n-> ')
-            telefone_pessoa = input('Insira seu Telefone:\n-> ')
-            email_pessoa = input('Insira seu email:\n-> ')
-            cpf_pessoa = input('Insira seu CPF:\n-> ')
-
-            print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nNome: {nome_pessoa}\nIdade: {idade_pessoa}\nTelefone: {telefone_pessoa}\nEmail: {email_pessoa}\nCPF: {cpf_pessoa}\n-------------------------------\n')
-            dados_corretos_pessoa = Escolha(opcao_sim_nao, 'O seus dados estão corretos?\nSIM(S) ou NAO(N)\n-> ')
-
-            if dados_corretos_pessoa == 'SIM' or dados_corretos_pessoa == 'S':
-                inserirListasPessoa()
-                os.system('cls')
-
-        else:
-            while True:
                 nome_restaurante = input('Insira o nome do seu restaurante:\n-> ')
                 tipo_restaurante = input('Insira o tipo da cozinha do seu restaurante (ex: Italiana, Japonesa, etc):\n-> ')
                 cnpj_restaurante = input('Insira o CNPJ do seu restaurante:\n-> ')
                 telefone_restaurante = input('Insira o Telefone de Contato do seu Restaurante:\n-> ')
                 email_restaurante = input('Insira o Email de Contato do seu Restaurante:\n-> ')
 
-                print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nRazão Social: {nome_restaurante}\nCozinha: {tipo_restaurante}\nCNPJ: {cnpj_restaurante}\nTelefone: {telefone_restaurante}\nEmail: {email_restaurante}\n-------------------------------\n')
+                print('\n---------------------\nInsira o endereço completo do seu restaurante:\n---------------------\n')
                 
-                dados_corretos_restaurante = Escolha(opcao_sim_nao, 'Os dados do seu Restaurante acima estão corretos?\nSIM(S) ou NAO(N)\n\n-> ')
+                estado_restaurante = input('Insira o ESTADO do seu Restaurante:\n-> ')
+                cidade_restaurante = input('Insira a CIDADE do seu Restaurante:\n-> ')
+                bairro_restaurante = input('Insira o BAIRRO do seu Restaurante:\n-> ')
+                rua_restaurante = input('Insira a RUA do seu Restaurante:\n-> ')
+                numero_restaurante = input('Insira o NÚMERO do seu Restaurante:\n-> ')
 
-                if dados_corretos_restaurante == 'SIM' or dados_corretos_restaurante == 'S':
-                    print('Insira o endereço completo do seu restaurante:\n')
-                    while True:
-                        estado_restaurante = input('Insira o ESTADO do seu Restaurante:\n-> ')
-                        cidade_restaurante = input('Insira a CIDADE do seu Restaurante:\n-> ')
-                        bairro_restaurante = input('Insira o BAIRRO do seu Restaurante:\n-> ')
-                        rua_restaurante = input('Insira a RUA do seu Restaurante:\n-> ')
-                        numero_restaurante = input('Insira o NÚMERO do seu Restaurante:\n-> ')
+                print(f'\n---|DADOS DO ENDEREÇO|---\n-------------------------------\n\nSeu Restaurante pertence a: {estado_restaurante}, {cidade_restaurante}, {bairro_restaurante}, {rua_restaurante}, {numero_restaurante}.\n\n-------------------------------\n\n')
 
-                        print(f'\n---|DADOS DO ENDEREÇO|---\n-------------------------------\n\nSeu Restaurante pertence a: {estado_restaurante}, {cidade_restaurante}, {bairro_restaurante}, {rua_restaurante}, {numero_restaurante}.\n\n-------------------------------\n\n')
+                dados_corretos_endereco_restaurante = Escolha(opcao_sim_nao, 'Os dados do endereço acima estão corretos?\nSIM(S) ou NAO(N)\n\n-> ')
 
-                        dados_corretos_endereco_restaurante = Escolha(opcao_sim_nao, 'Os dados do endereço acima estão corretos?\nSIM(S) ou NAO(N)\n\n-> ')
+                if dados_corretos_endereco_restaurante == 'SIM' or dados_corretos_endereco_restaurante == 'S':
 
-                        if dados_corretos_endereco_restaurante == 'SIM' or dados_corretos_endereco_restaurante == 'S':
+                    endereco_restaurante = (f'{estado_restaurante}, {cidade_restaurante}, {bairro_restaurante}, {rua_restaurante}, {numero_restaurante}')
 
-                            endereco_restaurante = (f'{estado_restaurante}, {cidade_restaurante}, {bairro_restaurante}, {rua_restaurante}, {numero_restaurante}')
+                    print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nRazão Social: {nome_restaurante}\nCozinha: {tipo_restaurante}\nCNPJ: {cnpj_restaurante}\nTelefone: {telefone_restaurante}\nEmail: {email_restaurante}\nEndereço Completo: {endereco_restaurante}\n-------------------------------\n')
 
-                            print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nRazão Social: {nome_restaurante}\nCozinha: {tipo_restaurante}\nCNPJ: {cnpj_restaurante}\nTelefone: {telefone_restaurante}\nEmail: {email_restaurante}\nEndereço Completo: {endereco_restaurante}\n-------------------------------\n')
+                    inserirListasRestaurante(nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante)
+                    limpar_tela()
 
-                            inserirListasRestaurante()
-                                                    
-
+if __name__ == '__main__':
+    main()
