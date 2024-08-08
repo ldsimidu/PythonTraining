@@ -15,14 +15,16 @@ def menuPrincipal():
     ╚═════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝░░╚═╝╚══════╝╚═════╝░╚═════╝░\n""")
 
     
-    print('-----|MENU|-----\n1. Sua Conta\n2. Listar Restaurantes\n3. Ativar Restaurante\n4. Sair do Aplicativo\n----------------\n')
+    print('-----|MENU|-----\n1. Sua Conta\n2. Cdastrar Novo Restaurante\n3. Listar Restaurantes\n4. Ativar Restaurante\n5. Sair do Aplicativo\n----------------\n')
 
     escolher_menu = Escolha(opcao_menu, 'Qual opção deseja escolher? (1, 2, 3 ou 4)\n-> ')
-    if escolher_menu == '4':
+    if escolher_menu == '5':
         finalizar_app()
     elif escolher_menu == '2':
-        restaurantesCadastrados()
+        cadastrarRestaurante()
     elif escolher_menu == '3':
+        restaurantesCadastrados()
+    elif escolher_menu == '4':
         print('não cheguei nessa parte do curso ainda irmão')
     else:
         suaConta() 
@@ -39,8 +41,12 @@ def suaConta():
         email = lista_email_pessoas[0]
         cpf = lista_cpf_pessoas[0]
 
-        print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nNome: {nome}\nIdade: {idade}\nTelefone: {telefone}\nEmail: {email}\nCPF: {cpf}\n-------------------------------\n')
-        voltar_menu()
+        print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nNome: {nome}\nIdade: {idade}\nTelefone: {telefone}\nEmail: {email}\nCPF: {cpf}\n-------------------------------\n\n')
+        editar_dados = Escolha(opcao_sim_nao, 'Deseja editar seus dados?:\nSIM(S) ou NAO(N)\n-> ')
+        if editar_dados == 'SIM' or editar_dados == 'S':
+            cadastrarPessoa()
+        else:
+            voltar_menu()
 
 def restaurantesCadastrados():
 
@@ -71,14 +77,14 @@ def desejaCadastrar():
         else:
             print('\nVocê escolheu se cadastrar um :\nRESTAURANTE\n')
 
-        continuar_cadastro = Escolha(opcao_sim_nao, 'Deseja continuar com o perfil desejado para cadastro?\nSIM(S) ou NAO(N)\n-> ')
-        if continuar_cadastro == 'SIM' or continuar_cadastro == 'S':
-            limpar_tela()    
-            while True:
-                if tipo_cadastro == 'PESSOA' or tipo_cadastro == 'P':
-                    cadastrarPessoa()
-                else:
-                    cadastrarRestaurante()
+        '''continuar_cadastro = Escolha(opcao_sim_nao, 'Deseja continuar com o perfil desejado para cadastro?\nSIM(S) ou NAO(N)\n-> ')
+        if continuar_cadastro == 'SIM' or continuar_cadastro == 'S':'''
+        limpar_tela()    
+        while True:
+            if tipo_cadastro == 'PESSOA' or tipo_cadastro == 'P':
+                cadastrarPessoa()
+            else:
+                cadastrarRestaurante()
     else:
         limpar_tela()
         menuPrincipal()
