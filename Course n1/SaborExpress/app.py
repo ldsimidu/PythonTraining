@@ -149,7 +149,6 @@ def cadastrarPessoa():
         inserirListasPessoa(nome_pessoa, idade_pessoa, telefone_pessoa, email_pessoa, cpf_pessoa)
         limpar_tela()
 
-
 def cadastrarRestaurante():
     while True:
                 nome_restaurante = input('Insira o nome do seu restaurante:\n-> ')
@@ -178,6 +177,20 @@ def cadastrarRestaurante():
 
                     inserirListasRestaurante(nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante)
                     limpar_tela()
+
+def pratos_restaurantes():
+    deseja_inserir_pratos = Escolha(opcao_sim_nao, 'Deseja inserir até 3 pratos para seu restaurante cadastrado?:\nSIM(S) ou NAO(N)\n-> ')
+    if deseja_inserir_pratos == 'SIM' or deseja_inserir_pratos == 'S':
+        print('Insira seus pratos desejados:\n')
+        while True:
+            print('Detalhes do primeiro prato:')
+            prato1_id = input('Insira o Identificador Único (ID):')
+            prato1_nome = input('Insira o nome do prato:\n-> ')
+            prato1_descricao = input('Insira a descrição do prato:\n-> ')
+            prato1_preco = input('Insira o preço do seu prato:\n-> ')
+            prato1_categoria = input('Insira a categoria (Ex. Japonês, Italiano) do seu prato:\n-> ')
+            print(f'\n--------------------------------\nSeu prato n1:\nID: {prato1_id}\nNome: {prato1_nome}\nDescrição: {prato1_descricao}')
+
 
 if __name__ == '__main__':
     main()

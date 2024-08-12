@@ -15,6 +15,9 @@ lista_email_pessoas = []
 
 lista_endereco_pessoas = []
 
+prato1 = []
+prato2 = []
+prato3 = []
 
 opcao_sim_nao = ['Sim', 'S', 'NAO', 'N']
 opcao_tipo_cadastro = ['Pessoa', 'P', 'Restaurante', 'R']
