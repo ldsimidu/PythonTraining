@@ -3,9 +3,27 @@ import os
 from list import *
 
 def main():
-    menuPrincipal()   
+    menuPrincipal(lista_nomes_restaurantes)   
 
-def menuPrincipal():
+def deseja_listar_restaurante_ou_prato():
+    restaurante_ou_prato = Escolha(opcao_restaurante_prato, 'Deseja listar:\nRESTAURANTES(R) ou PRATOS(P)\n-> ')
+    if restaurante_ou_prato == 'RESTAURANTE' or restaurante_ou_prato == 'R':
+        restaurantesCadastrados()
+        limpar_tela()
+    else:
+        pratos_cadastrados()
+        limpar_tela()
+    
+def deseja_cadastrar_restaurante_prato(lista_nomes_restaurantes):
+    restaurante_ou_prato = Escolha(opcao_restaurante_prato, 'Deseja Cadastrar:\nRESTAURANTES(R) ou PRATOS(P)\n-> ')
+    if restaurante_ou_prato == 'RESTAURANTE' or restaurante_ou_prato == 'R':
+        cadastrar_restaurantes(lista_nomes_restaurantes)
+        limpar_tela()
+    else:
+        cadastrar_pratos_restaurantes(lista_nomes_restaurantes)
+        limpar_tela()
+        
+def menuPrincipal(lista_nomes_restaurantes):
     print("""
     ░██████╗░█████╗░██████╗░░█████╗░██████╗░  ███████╗██╗░░██╗██████╗░██████╗░███████╗░██████╗░██████╗
     ██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗  ██╔════╝╚██╗██╔╝██╔══██╗██╔══██╗██╔════╝██╔════╝██╔════╝
@@ -15,15 +33,15 @@ def menuPrincipal():
     ╚═════╝░╚═╝░░╚═╝╚═════╝░░╚════╝░╚═╝░░╚═╝  ╚══════╝╚═╝░░╚═╝╚═╝░░░░░╚═╝░░╚═╝╚══════╝╚═════╝░╚═════╝░\n""")
 
     
-    print('-----|MENU|-----\n1. Sua Conta\n2. Cdastrar Novo Restaurante\n3. Listar Restaurantes\n4. Ativar Restaurante\n5. Sair do Aplicativo\n----------------\n')
+    print('-----|MENU|-----\n1. Sua Conta\n2. Cadastrar Novo Restaurante/Prato\n3. Listar Restaurantes/Pratos\n4. Ativar Restaurante\n5. Sair do Aplicativo\n----------------\n')
 
     escolher_menu = Escolha(opcao_menu, 'Qual opção deseja escolher? (1, 2, 3 ou 4)\n-> ')
     if escolher_menu == '5':
         finalizar_app()
     elif escolher_menu == '2':
-        cadastrarRestaurante()
+        deseja_cadastrar_restaurante_prato(lista_nomes_restaurantes)
     elif escolher_menu == '3':
-        restaurantesCadastrados()
+        deseja_listar_restaurante_ou_prato()
     elif escolher_menu == '4':
         print('não cheguei nessa parte do curso ainda irmão')
     else:
@@ -64,27 +82,25 @@ def restaurantesCadastrados():
             print(f'Email: {lista_email_restaurantes[i]}')
             print(f'Endereço: {lista_endereco_restaurantes[i]}\n')
 
-    voltar_menu()
+    voltar_menu(lista_nomes_restaurantes)
 
 def desejaCadastrar():
     #while True:
     deseja_cadastro = Escolha(opcao_sim_nao, 'Deseja cadastrar-se?:\nSIM(S) ou NAO(N)\n-> ')
     if deseja_cadastro == 'SIM' or deseja_cadastro == 'S':
-        tipo_cadastro = Escolha(opcao_tipo_cadastro, '\nVocê deseja se cadastrar uma:\nCONTA(P) ou RESTAURANTE(R)?\n-> ')
+        '''tipo_cadastro = Escolha(opcao_tipo_cadastro, '\nVocê deseja se cadastrar uma:\nCONTA(P) ou RESTAURANTE(R)?\n-> ')
 
         if tipo_cadastro == 'PESSOA' or tipo_cadastro == 'P':
             print('\nVocê escolheu se cadastrar uma:\nCONTA\n')
         else:
-            print('\nVocê escolheu se cadastrar um :\nRESTAURANTE\n')
+            print('\nVocê escolheu se cadastrar um :\nRESTAURANTE\n')'''
 
         '''continuar_cadastro = Escolha(opcao_sim_nao, 'Deseja continuar com o perfil desejado para cadastro?\nSIM(S) ou NAO(N)\n-> ')
         if continuar_cadastro == 'SIM' or continuar_cadastro == 'S':'''
         limpar_tela()    
         while True:
-            if tipo_cadastro == 'PESSOA' or tipo_cadastro == 'P':
-                cadastrarPessoa()
-            else:
-                cadastrarRestaurante()
+            cadastrarPessoa()
+            
     else:
         limpar_tela()
         menuPrincipal()
@@ -100,7 +116,7 @@ def inserirListasPessoa(nome_pessoa, idade_pessoa, telefone_pessoa, email_pessoa
     print(f'Seja muito Bem-Vindo(a), {nome_pessoa}! A Sabor Express fica feliz em te receber!')
     voltar_menu()
 
-def inserirListasRestaurante(nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante):
+def inserirListasRestaurante(lista_nomes_restaurantes, nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante):
 
     usuario_cadastrado = True
     lista_nomes_restaurantes.append(nome_restaurante)
@@ -111,7 +127,27 @@ def inserirListasRestaurante(nome_restaurante, tipo_restaurante, cnpj_restaurant
     lista_endereco_restaurantes.append(endereco_restaurante)
 
     print(f'Seu Restaurante {nome_restaurante} foi cadastro com sucesso na Sabor Express!')
-    voltar_menu()
+    voltar_menu(lista_nomes_restaurantes)
+    
+def inserirListaPrato(prato1, prato1_id, prato1_nome, prato1_descricao, prato1_preco, prato1_categoria, nome_restaurante_escolhido):
+    lista_prato1 = (prato1)
+    lista_id_prato.append(prato1_id)
+    lista_nome_prato.append(prato1_nome)
+    lista_descricao_prato.append(prato1_descricao)
+    lista_preco_prato.append(prato1_preco)
+    lista_categoria_prato.append(prato1_categoria)
+    lista_restaurante_prato.append(nome_restaurante_escolhido)
+    
+    print(f'Seu Prato {prato1_nome} foi cadastro com sucesso na Sabor Express!')
+    voltar_menu(lista_nomes_restaurantes)
+    
+def verificar_numero(msg):
+    while True:
+        numero = input(msg)
+        if not numero.isnumeric():
+            print('O valor inserido não é um número.')
+        else:
+            return int(numero)
     
 def Escolha(lista_opcoes, msg):
     escolha = input(msg).upper()
@@ -129,11 +165,11 @@ def finalizar_app():
 def limpar_tela():
     os.system('cls')
 
-def voltar_menu():
+def voltar_menu(lista_nomes_restaurantes):
     voltar_menu = Escolha(opcao_voltar, 'Pressione a TECLA "B" para voltar ao Menu:\nVoltar(B)\n-> ')
     if voltar_menu == 'B': 
         limpar_tela()
-        menuPrincipal()
+        menuPrincipal(lista_nomes_restaurantes)
 
 def cadastrarPessoa():
     nome_pessoa = input('Insira seu nome completo:\n-> ')
@@ -149,7 +185,7 @@ def cadastrarPessoa():
         inserirListasPessoa(nome_pessoa, idade_pessoa, telefone_pessoa, email_pessoa, cpf_pessoa)
         limpar_tela()
 
-def cadastrarRestaurante():
+def cadastrar_restaurantes(lista_nomes_restaurante):
     while True:
                 nome_restaurante = input('Insira o nome do seu restaurante:\n-> ')
                 tipo_restaurante = input('Insira o tipo da cozinha do seu restaurante (ex: Italiana, Japonesa, etc):\n-> ')
@@ -175,21 +211,67 @@ def cadastrarRestaurante():
 
                     print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nRazão Social: {nome_restaurante}\nCozinha: {tipo_restaurante}\nCNPJ: {cnpj_restaurante}\nTelefone: {telefone_restaurante}\nEmail: {email_restaurante}\nEndereço Completo: {endereco_restaurante}\n-------------------------------\n')
 
-                    inserirListasRestaurante(nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante)
+                    inserirListasRestaurante(lista_nomes_restaurantes, nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante)
                     limpar_tela()
 
-def pratos_restaurantes():
-    deseja_inserir_pratos = Escolha(opcao_sim_nao, 'Deseja inserir até 3 pratos para seu restaurante cadastrado?:\nSIM(S) ou NAO(N)\n-> ')
-    if deseja_inserir_pratos == 'SIM' or deseja_inserir_pratos == 'S':
-        print('Insira seus pratos desejados:\n')
-        while True:
-            print('Detalhes do primeiro prato:')
-            prato1_id = input('Insira o Identificador Único (ID):')
-            prato1_nome = input('Insira o nome do prato:\n-> ')
-            prato1_descricao = input('Insira a descrição do prato:\n-> ')
-            prato1_preco = input('Insira o preço do seu prato:\n-> ')
-            prato1_categoria = input('Insira a categoria (Ex. Japonês, Italiano) do seu prato:\n-> ')
-            print(f'\n--------------------------------\nSeu prato n1:\nID: {prato1_id}\nNome: {prato1_nome}\nDescrição: {prato1_descricao}')
+def cadastrar_pratos_restaurantes(lista_nomes_restaurantes):
+    if not lista_nomes_restaurantes:
+        print('Ainda não existem Restaurantes cadastrados.')
+        voltar_menu(lista_nomes_restaurantes)
+    else:
+        deseja_inserir_pratos = Escolha(opcao_sim_nao, 'Deseja inserir um prato a um restaurante cadastrado?:\nSIM(S) ou NAO(N)\n-> ')
+        if deseja_inserir_pratos == 'SIM' or deseja_inserir_pratos == 'S':
+            print('Insira seus pratos desejados:\n')
+            
+            
+            while True:
+                
+                print("Escolha um dos restaurantes cadastrados:")
+                for i, restaurante in enumerate(lista_nomes_restaurantes):
+                    print(f"{i+1}. {restaurante}")
+                
+                
+                escolha_restaurante = verificar_numero("Digite o número do restaurante para associar o prato:\n-> ")
+                if escolha_restaurante < 1 or not lista_nomes_restaurantes:
+                    print('Escolha uma opção válida.')
+                
+                else:
+                    
+                    nome_restaurante_escolhido = lista_nomes_restaurantes[escolha_restaurante - 1]
+                
+                    print('Detalhes do primeiro prato:')
+                    prato1_id = input('Insira o Identificador Único (ID):\n-> ')
+                    prato1_nome = input('Insira o nome do prato:\n-> ')
+                    prato1_descricao = input('Insira a descrição do prato:\n-> ')
+                    prato1_preco = input('Insira o preço do seu prato:\n-> ')
+                    prato1_categoria = input('Insira a categoria (Ex. Japonês, Italiano) do seu prato:\n-> ')
+                    print(f'\n--------------------------------\nSeu prato n1:\nID: {prato1_id}\nNome: {prato1_nome}\nDescrição: {prato1_descricao}\nPreço: R${prato1_preco}\nCategoria: {prato1_categoria}\n--------------------------------\n')
+                    
+                    dados_corretos = Escolha(opcao_sim_nao,'As informações acima do seu prato estão corretas?:\nSIM(S) ou NAO(N)\n-> ')
+                    if dados_corretos == 'SIM' or dados_corretos == 'S':
+                        
+                        prato1 = (f'ID: {prato1_id}\nNome: {prato1_nome}\nDescrição: {prato1_descricao}\nPreço: R${prato1_preco}\nCategoria: {prato1_categoria}\n RESTAURANTE: {nome_restaurante_escolhido}')
+                        
+                        inserirListaPrato(prato1, prato1_id, prato1_nome, prato1_descricao, prato1_preco, prato1_categoria, nome_restaurante_escolhido)
+                        
+                        
+
+def pratos_cadastrados():
+    if not lista_id_prato:
+        limpar_tela()
+        print('Nenhum restaurante registrado.')
+    else:
+        limpar_tela()
+        for i in range(len(lista_id_prato)):
+            print(f'\n---|PRATO {i+1}|---')
+            print(f'ID: {lista_id_prato[i]}')
+            print(f'Nome: {lista_nome_prato[i]}')
+            print(f'Descrição: {lista_descricao_prato[i]}')
+            print(f'Preço: R${lista_preco_prato[i]}')
+            print(f'Categoria: {lista_categoria_prato[i]}')
+            print(f'RESTAURANTE: {lista_restaurante_prato[i]}')
+
+    voltar_menu(lista_nomes_restaurantes)
 
 
 if __name__ == '__main__':

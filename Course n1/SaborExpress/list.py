@@ -15,11 +15,17 @@ lista_email_pessoas = []
 
 lista_endereco_pessoas = []
 
-prato1 = []
-prato2 = []
-prato3 = []
+lista_prato1 = []
+lista_id_prato = []
+lista_nome_prato = []
+lista_descricao_prato = []
+lista_preco_prato = []
+lista_categoria_prato = []
+lista_restaurante_prato = []
+
 
 opcao_sim_nao = ['Sim', 'S', 'NAO', 'N']
 opcao_tipo_cadastro = ['Pessoa', 'P', 'Restaurante', 'R']
+opcao_restaurante_prato = ['RESTAURANTE', 'R', 'PRATO', 'P']
 opcao_menu = ['1', '2', '3', '4']
 opcao_voltar = ['B', 'BACK', 'VOLTAR']
