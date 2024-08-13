@@ -1,6 +1,8 @@
 import os
 #from FunctionApp import *
-from list import *
+from lists import *
+from globalFunction import *
+
 
 def main():
     menuPrincipal(lista_nomes_restaurantes)   
@@ -51,7 +53,7 @@ def suaConta():
 
     if not lista_nomes_pessoas:
         print("Você não possui uma conta")
-        desejaCadastrar()
+        deseja_cadastrar_conta()
     else:
         nome = lista_nomes_pessoas[0]
         idade = lista_idade_pessoas[0]
@@ -84,7 +86,7 @@ def restaurantesCadastrados():
 
     voltar_menu(lista_nomes_restaurantes)
 
-def desejaCadastrar():
+def deseja_cadastrar_conta():
     #while True:
     deseja_cadastro = Escolha(opcao_sim_nao, 'Deseja cadastrar-se?:\nSIM(S) ou NAO(N)\n-> ')
     if deseja_cadastro == 'SIM' or deseja_cadastro == 'S':
@@ -103,7 +105,7 @@ def desejaCadastrar():
             
     else:
         limpar_tela()
-        menuPrincipal()
+        menuPrincipal(lista_nomes_restaurantes)
 
 def inserirListasPessoa(nome_pessoa, idade_pessoa, telefone_pessoa, email_pessoa, cpf_pessoa):
     usuario_cadastrado = True
@@ -114,7 +116,7 @@ def inserirListasPessoa(nome_pessoa, idade_pessoa, telefone_pessoa, email_pessoa
     lista_cpf_pessoas.append(cpf_pessoa)
 
     print(f'Seja muito Bem-Vindo(a), {nome_pessoa}! A Sabor Express fica feliz em te receber!')
-    voltar_menu()
+    voltar_menu(lista_nomes_restaurantes)
 
 def inserirListasRestaurante(lista_nomes_restaurantes, nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante):
 
@@ -141,36 +143,6 @@ def inserirListaPrato(prato1, prato1_id, prato1_nome, prato1_descricao, prato1_p
     print(f'Seu Prato {prato1_nome} foi cadastro com sucesso na Sabor Express!')
     voltar_menu(lista_nomes_restaurantes)
     
-def verificar_numero(msg):
-    while True:
-        numero = input(msg)
-        if not numero.isnumeric():
-            print('O valor inserido não é um número.')
-        else:
-            return int(numero)
-    
-def Escolha(lista_opcoes, msg):
-    escolha = input(msg).upper()
-    while escolha not in lista_opcoes:
-        print('\nEscolha uma opção válida\n')
-        escolha = input(msg).upper()
-    return escolha
-
-def finalizar_app():
-    os.system('cls')
-    # os.system('clear') 
-    print('Finalizando o app')
-    exit()
-
-def limpar_tela():
-    os.system('cls')
-
-def voltar_menu(lista_nomes_restaurantes):
-    voltar_menu = Escolha(opcao_voltar, 'Pressione a TECLA "B" para voltar ao Menu:\nVoltar(B)\n-> ')
-    if voltar_menu == 'B': 
-        limpar_tela()
-        menuPrincipal(lista_nomes_restaurantes)
-
 def cadastrarPessoa():
     nome_pessoa = input('Insira seu nome completo:\n-> ')
     idade_pessoa = input('Insira sua idade:\n-> ')
@@ -254,8 +226,6 @@ def cadastrar_pratos_restaurantes(lista_nomes_restaurantes):
                         
                         inserirListaPrato(prato1, prato1_id, prato1_nome, prato1_descricao, prato1_preco, prato1_categoria, nome_restaurante_escolhido)
                         
-                        
-
 def pratos_cadastrados():
     if not lista_id_prato:
         limpar_tela()
@@ -272,7 +242,6 @@ def pratos_cadastrados():
             print(f'RESTAURANTE: {lista_restaurante_prato[i]}')
 
     voltar_menu(lista_nomes_restaurantes)
-
 
 if __name__ == '__main__':
     main()
