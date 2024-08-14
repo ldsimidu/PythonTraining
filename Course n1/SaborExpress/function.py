@@ -137,21 +137,27 @@ def sua_conta():
         voltar_menu()
 
 def restaurantes_cadastrados():
+    #ativo = cadastrar_restaurantes
 
     if not lista_nomes_restaurantes:
         limpar_tela()
-        print('Nenhum restaurante registrado.')
+        print('Nenhum restaurante registrado ou ativo.')
     else:
         limpar_tela()
         for i in range(len(lista_nomes_restaurantes)):
-            print(f'\n---|RESTAURANTE {i+1}|---')
-            print(f'Nome: {lista_nomes_restaurantes[i]}')
-            print(f'Tipo: {lista_categoria_restaurantes[i]}')
-            print(f'CNPJ: {lista_cnpj_restaurantes[i]}')
-            print(f'Telefone: {lista_telefone_restaurantes[i]}')
-            print(f'Email: {lista_email_restaurantes[i]}')
-            print(f'Endereço: {lista_endereco_restaurantes[i]}\n')
-
+            if lista_ativo_restaurantes[i]:
+                print(f'\n---|RESTAURANTE {i+1}|---')
+                print(f'Nome: {lista_nomes_restaurantes[i]}')
+                print(f'Tipo: {lista_categoria_restaurantes[i]}')
+                print(f'CNPJ: {lista_cnpj_restaurantes[i]}')
+                print(f'Telefone: {lista_telefone_restaurantes[i]}')
+                print(f'Email: {lista_email_restaurantes[i]}')
+                print(f'Endereço: {lista_endereco_restaurantes[i]}')
+                print(f'Ativo: {lista_ativo_restaurantes[i]}\n')
+            else:
+                limpar_tela()
+            print('Nenhum restaurante registrado ou ativo.')
+            voltar_menu()
     voltar_menu()
     
 def deseja_cadastrar_conta():
@@ -186,7 +192,7 @@ def inserir_listas_pessoa(nome_pessoa, idade_pessoa, telefone_pessoa, email_pess
     print(f'Seja muito Bem-Vindo(a), {nome_pessoa}! A Sabor Express fica feliz em te receber!')
     voltar_menu()
 
-def inserir_listas_restaurante(lista_nomes_restaurantes, nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante):
+def inserir_listas_restaurante(lista_nomes_restaurantes, nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante, ativo_restaurante):
 
     usuario_cadastrado = True
     lista_nomes_restaurantes.append(nome_restaurante)
@@ -195,6 +201,7 @@ def inserir_listas_restaurante(lista_nomes_restaurantes, nome_restaurante, tipo_
     lista_telefone_restaurantes.append(telefone_restaurante)
     lista_email_restaurantes.append(email_restaurante)
     lista_endereco_restaurantes.append(endereco_restaurante)
+    lista_ativo_restaurantes.append(ativo_restaurante)
 
     print(f'Seu Restaurante {nome_restaurante} foi cadastro com sucesso na Sabor Express!')
     
@@ -246,7 +253,7 @@ def categoria_restaurante():
         print("Opção inválida. Por favor, selecione uma das opções listadas.")
         return categoria_restaurante()
 
-def cadastrar_restaurantes(lista_nomes_restaurante):
+def cadastrar_restaurantes():
     while True:
         nome_restaurante = input('Insira o nome do seu restaurante:\n-> ')
         tipo_restaurante = categoria_restaurante()
@@ -261,6 +268,7 @@ def cadastrar_restaurantes(lista_nomes_restaurante):
         bairro_restaurante = input('Insira o BAIRRO do seu Restaurante:\n-> ')
         rua_restaurante = input('Insira a RUA do seu Restaurante:\n-> ')
         numero_restaurante = verificar_numero('Insira o NÚMERO do seu Restaurante:\n-> ')
+        ativo_restaurante = False
 
         print(f'\n---|DADOS DO ENDEREÇO|---\n-------------------------------\n\nSeu Restaurante pertence a: {estado_restaurante}, {cidade_restaurante}, {bairro_restaurante}, {rua_restaurante}, {numero_restaurante}.\n\n-------------------------------\n\n')
 
@@ -270,10 +278,11 @@ def cadastrar_restaurantes(lista_nomes_restaurante):
             limpar_tela()
             endereco_restaurante = (f'{estado_restaurante}, {cidade_restaurante}, {bairro_restaurante}, {rua_restaurante}, {numero_restaurante}')
 
-            print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nRazão Social: {nome_restaurante}\nCozinha: {tipo_restaurante}\nCNPJ: {cnpj_restaurante}\nTelefone: {telefone_restaurante}\nEmail: {email_restaurante}\nEndereço Completo: {endereco_restaurante}\n-------------------------------\n')
+            print(f'\n\n---|SEUS DADOS CADASTRADOS|---\n-------------------------------\nRazão Social: {nome_restaurante}\nCozinha: {tipo_restaurante}\nCNPJ: {cnpj_restaurante}\nTelefone: {telefone_restaurante}\nEmail: {email_restaurante}\nEndereço Completo: {endereco_restaurante}\nAtivo: {ativo_restaurante}\n-------------------------------\n')
 
-            inserir_listas_restaurante(lista_nomes_restaurantes, nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante)
+            inserir_listas_restaurante(lista_nomes_restaurantes, nome_restaurante, tipo_restaurante, cnpj_restaurante, telefone_restaurante, email_restaurante, endereco_restaurante, ativo_restaurante)
             limpar_tela()
+            return ativo_restaurante
 
 def cadastrar_pratos_restaurantes(lista_nomes_restaurantes):
     if not lista_nomes_restaurantes:

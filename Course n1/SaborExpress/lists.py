@@ -4,6 +4,7 @@ lista_cnpj_restaurantes = []
 lista_telefone_restaurantes = []
 lista_email_restaurantes = []
 lista_endereco_restaurantes = []
+lista_ativo_restaurantes = []
 
 lista_culinarias = [
     "Italiana",
