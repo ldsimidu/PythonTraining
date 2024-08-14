@@ -1,9 +1,22 @@
-lista_nomes_restaurantes= []
-lista_tipos_restaurantes = []
+lista_nomes_restaurantes = []
+lista_categoria_restaurantes = []
 lista_cnpj_restaurantes = []
 lista_telefone_restaurantes = []
 lista_email_restaurantes = []
 lista_endereco_restaurantes = []
+
+lista_culinarias = [
+    "Italiana",
+    "Brasileira",
+    "Japonesa",
+    "Mexicana",
+    "Indiana",
+    "Chinesa",
+    "Francesa",
+    "Grega",
+    "Tailandesa",
+    "Libanesa"
+]
 
 
 lista_nomes_pessoas= []
@@ -27,5 +40,5 @@ lista_restaurante_prato = []
 opcao_sim_nao = ['Sim', 'S', 'NAO', 'N']
 opcao_tipo_cadastro = ['Pessoa', 'P', 'Restaurante', 'R']
 opcao_restaurante_prato = ['RESTAURANTE', 'R', 'PRATO', 'P']
-opcao_menu = ['1', '2', '3', '4']
+opcao_menu = ['1', '2', '3', '4', '5', '6']
 opcao_voltar = ['B', 'BACK', 'VOLTAR']
