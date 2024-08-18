@@ -47,7 +47,7 @@ def deseja_cadastrar_restaurante_prato(lista_nomes_restaurantes):
     restaurante_ou_prato = escolha(opcao_restaurante_prato, 'Deseja Cadastrar:\nRESTAURANTES(R) ou PRATOS(P)\n-> ')
     if restaurante_ou_prato == 'RESTAURANTE' or restaurante_ou_prato == 'R':
         limpar_tela()
-        cadastrar_restaurantes(lista_nomes_restaurantes)
+        cadastrar_restaurantes()
     else:
         limpar_tela()
         cadastrar_pratos_restaurantes(lista_nomes_restaurantes)
@@ -72,12 +72,30 @@ def menu_principal(lista_nomes_restaurantes):
     elif escolher_menu == '3':
         deseja_listar_restaurante_ou_prato()
     elif escolher_menu == '4':
-        print('não cheguei nessa parte do curso ainda irmão')
+        ativar_restaurante()
     elif escolher_menu == '5':
         sobre_nos()
     else:
         sua_conta() 
 
+def ativar_restaurante():
+    while True:
+        for i, restaurante in enumerate(lista_nomes_restaurantes):
+            if not lista_nomes_restaurantes[i]:
+                print(f"\n-----------------------------\n{i+1}. {restaurante}\n-----------------------------\n")
+                
+                escolha_restaurante = verificar_numero('Insira o Número do Restaurante que deseja ativar:\n->')
+                restaurante = escolha_restaurante   
+                if restaurante in lista_nomes_restaurantes[i]:
+                    lista_ativo_restaurantes[i] = True
+                    
+                voltar_menu()
+                '''escolha_restaurante = verificar_numero("Digite o número do restaurante para ativá-lo:\n-> ")
+                if escolha_restaurante < 1 or not lista_nomes_restaurantes:
+                    print('escolha uma opção válida.')
+                else:
+                    nome_restaurante_escolhido = lista_nomes_restaurantes[escolha_restaurante - 1]'''
+            
 def sobre_nos():
     sobre = [
     {
@@ -338,7 +356,3 @@ def pratos_cadastrados():
             print(f'RESTAURANTE: {lista_restaurante_prato[i]}')
 
     voltar_menu()
-
-'''if __name__ == '__main__':
-    limpar_tela()
-    main()'''
