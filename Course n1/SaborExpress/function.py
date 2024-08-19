@@ -79,18 +79,23 @@ def menu_principal(lista_nomes_restaurantes):
         sua_conta() 
 
 def ativar_restaurante():
-    while True:
+    if not lista_nomes_restaurantes:
+        print("Nenhum restaurante cadastrado.")
+        voltar_menu()
+    else:
+        print('\n--------------------------------\n')
         for i, restaurante in enumerate(lista_nomes_restaurantes):
-            if not lista_nomes_restaurantes[i]:
-                print(f"\n-----------------------------\n{i+1}. {restaurante}\n-----------------------------\n")
-                
-                escolha_restaurante = verificar_numero('Insira o Número do Restaurante que deseja ativar:\n->')
-                restaurante = escolha_restaurante   
-                if restaurante in lista_nomes_restaurantes[i]:
-                    lista_ativo_restaurantes[i] = True
-                    
-                voltar_menu()
-                '''escolha_restaurante = verificar_numero("Digite o número do restaurante para ativá-lo:\n-> ")
+            if not lista_ativo_restaurantes[i]:
+                print(f"\n{i+1}. {restaurante}")
+                print('\n--------------------------------\n')
+        escolha_restaurante = verificar_numero('Insira o Número do Restaurante que deseja ativar:\n-> ')
+        if 1 <= escolha_restaurante <= len(lista_nomes_restaurantes):
+            lista_ativo_restaurantes[escolha_restaurante - 1] = True
+            print(f"Restaurante {lista_nomes_restaurantes[escolha_restaurante - 1]} ativado com sucesso!")
+        else:
+            print("Opção inválida.")
+        voltar_menu()
+        '''escolha_restaurante = verificar_numero("Digite o número do restaurante para ativá-lo:\n-> ")
                 if escolha_restaurante < 1 or not lista_nomes_restaurantes:
                     print('escolha uma opção válida.')
                 else:
