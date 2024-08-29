@@ -5,6 +5,16 @@ def main():
     menu_principal(lista_nomes_restaurantes)   
     
 def verificar_numero(msg):
+    
+    '''docustring:
+    Verifica se o texto (msg) é um número ou não
+    
+    o 'numero' é o resultado do 'input(msg)', se 'numero' NÃO for um número (if not numero.isnumeric),
+    a mensagem "O valor inserido não é válido" é mostrada e a função é reiniciada.
+    
+    Porém, se 'numero' for um número, a função é responsável por passar o valor de 'str' papra 'int'.
+    '''
+    
     while True:
         numero = input(msg)
         if not numero.isnumeric():
@@ -14,14 +24,30 @@ def verificar_numero(msg):
     
 def finalizar_app():
     os.system('cls')
+    os.system('clear')
     # os.system('clear') 
     print('Finalizando o app')
     exit()
 
 def limpar_tela():
     os.system('cls')
+    os.system('clear')
     
 def escolha(lista_opcoes, msg):
+    
+    """docustring:
+    Solicita que o usuário faça uma escolha a partir de uma lista de opções válidas.
+
+    Args:
+        lista_opcoes (list): Lista contendo as opções válidas que o usuário pode escolher.
+        msg (str): Mensagem a ser exibida ao usuário, indicando que ele deve fazer uma escolha.
+
+    Returns:
+        str: A escolha feita pelo usuário, convertida para letras maiúsculas.
+    
+    O loop continua até que o usuário forneça uma entrada que esteja dentro de `lista_opcoes`.
+    """
+    
     escolha = input(msg).upper()
     while escolha not in lista_opcoes:
         print('\nEscolha uma opção válida\n')
